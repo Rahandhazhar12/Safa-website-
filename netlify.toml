@@ -1,0 +1,4 @@
+[[redirects]]
+	from = "/"
+	to = "/safa.html"
+	status = 200
