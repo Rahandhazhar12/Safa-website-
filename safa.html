@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#18332c">
+	<meta name="description" content="Safa's little corner of the internet: high school, good stories, and movies worth talking about.">
+	<title>Safa's Screening Room</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			color-scheme: light;
+			--paper: #f8f7f2;
+			--ink: #1d2923;
+			--forest: #18332c;
+			--muted: #68736a;
+			--tomato: #e8684b;
+			--lime: #d6e678;
+			--line: #e5e4dc;
+			--serif: "Playfair Display", Georgia, serif;
+			--sans: "DM Sans", sans-serif;
+			--content: 1120px;
+		}
+		*, *::before, *::after { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+		a { color: inherit; }
+		button, input { font: inherit; }
+		button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--tomato); outline-offset: 4px; }
+		.wrap { width: min(var(--content), calc(100% - 56px)); margin-inline: auto; }
+		.hero { position: relative; display: flex; min-height: min(760px, 94svh); flex-direction: column; overflow: hidden; isolation: isolate; background: var(--forest) url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=2200&q=85") center 46% / cover no-repeat; color: #fffdf4; }
+		.hero::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgb(15 33 27 / 84%), rgb(15 33 27 / 63%) 45%, rgb(15 33 27 / 13%)), linear-gradient(0deg, rgb(15 33 27 / 30%), transparent 58%); content: ""; }
+		.topbar { display: flex; min-height: 86px; align-items: center; justify-content: space-between; border-bottom: 1px solid rgb(255 255 255 / 24%); }
+		.wordmark { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
+		.mark { display: grid; width: 33px; height: 33px; place-items: center; border: 1px solid rgb(255 255 255 / 72%); border-radius: 50%; font-family: var(--serif); font-size: 17px; }
+		.wordmark-name { font-size: 13px; font-weight: 700; }
+		.nav { display: flex; align-items: center; gap: 32px; }
+		.nav a { color: rgb(255 253 244 / 85%); font-size: 13px; text-decoration: none; transition: color 160ms ease; }
+		.nav a:hover { color: var(--lime); }
+		.nav .nav-cta { padding: 11px 16px; border: 1px solid rgb(255 255 255 / 55%); border-radius: 2px; color: #fffdf4; }
+		.nav .nav-cta:hover { border-color: var(--lime); }
+		.hero-inner { display: flex; flex: 1; flex-direction: column; justify-content: center; padding-block: 88px 100px; animation: arrive 700ms ease-out both; }
+		.eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 24px; color: var(--lime); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+		.eyebrow::before { width: 24px; height: 1px; background: currentColor; content: ""; }
+		h1, h2, h3, p { margin-top: 0; }
+		h1 { max-width: 720px; margin-bottom: 20px; font-family: var(--serif); font-size: clamp(58px, 9.2vw, 108px); font-weight: 500; line-height: .99; }
+		h1 em { color: var(--lime); font-weight: 500; }
+		.hero-copy { max-width: 415px; margin-bottom: 31px; color: rgb(255 253 244 / 85%); font-size: 16px; line-height: 1.8; }
+		.hero-link { display: inline-flex; width: fit-content; align-items: center; gap: 12px; color: var(--paper); font-size: 13px; font-weight: 600; text-decoration: none; }
+		.arrow { display: grid; width: 32px; height: 32px; place-items: center; border: 1px solid rgb(255 255 255 / 60%); border-radius: 50%; transition: background 160ms ease, color 160ms ease; }
+		.hero-link:hover .arrow { background: var(--lime); color: var(--forest); }
+		.hero-note { position: absolute; right: max(28px, calc((100vw - var(--content)) / 2)); bottom: 30px; color: rgb(255 253 244 / 78%); font-size: 11px; }
+		.intro { display: grid; grid-template-columns: .85fr 1fr; align-items: center; gap: 96px; padding-block: 118px; }
+		.section-label { margin-bottom: 16px; color: var(--tomato); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+		h2 { margin-bottom: 18px; font-family: var(--serif); font-size: clamp(38px, 5vw, 57px); font-weight: 500; line-height: 1.1; }
+		.intro-copy { max-width: 470px; margin: 0; color: #505c53; font-size: 15px; line-height: 1.9; }
+		.quote { padding: 13px 0 13px 35px; border-left: 2px solid var(--tomato); font-family: var(--serif); font-size: clamp(23px, 3vw, 31px); line-height: 1.5; }
+		.quote::after { display: block; width: 32px; height: 27px; margin-top: 14px; background: url("https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=650&q=80") center / cover; content: ""; }
+		.movie-wall { padding-block: 82px 96px; }
+		.movie-wall-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 32px; }
+		.movie-wall-heading h2 { margin-bottom: 10px; }
+		.movie-wall-heading > div > p:last-child { max-width: 475px; margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+		.poster-source { margin: 0 0 2px; color: var(--muted); font-size: 11px; }
+		.poster-source a { text-underline-offset: 3px; }
+		.poster-filters { display: flex; width: fit-content; gap: 3px; margin-bottom: 28px; padding: 4px; border: 1px solid var(--line); background: #eeede6; }
+		.poster-filter { min-height: 44px; padding: 0 14px; border: 0; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; transition: background 150ms ease, color 150ms ease; }
+		.poster-filter[aria-pressed="true"] { background: var(--forest); color: #fffdf4; }
+		.poster-filter:hover:not([aria-pressed="true"]) { color: var(--ink); }
+		.poster-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 30px 19px; }
+		.poster-card { min-width: 0; animation: arrive 350ms ease-out both; }
+		.poster-card[hidden] { display: none; }
+		.poster-link { display: block; text-decoration: none; }
+		.poster-image { position: relative; overflow: hidden; aspect-ratio: 2 / 3; background: #dfe3d8; }
+		.poster-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 240ms ease; }
+		.poster-link:hover .poster-image img { transform: scale(1.035); }
+		.poster-image.image-missing::after { position: absolute; inset: 0; display: grid; place-items: center; padding: 18px; background: var(--forest); color: var(--lime); content: "POSTER UNAVAILABLE"; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-align: center; }
+		.poster-caption { display: flex; flex-direction: column; gap: 5px; padding-top: 11px; }
+		.poster-caption h3 { margin: 0; font-size: 13px; font-weight: 600; line-height: 1.5; }
+		.poster-caption p { margin: 0; color: var(--muted); font-size: 10px; }
+		.shelf { padding-block: 90px 98px; background: #edf0e7; }
+		.shelf-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 40px; }
+		.shelf-heading h2 { margin-bottom: 0; }
+		.shelf-heading > p { max-width: 290px; margin-bottom: 5px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+		.watch-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); align-items: start; gap: 76px; }
+		.shelf-list { min-height: 146px; }
+		.watch-item { display: flex; min-height: 65px; align-items: center; gap: 15px; border-bottom: 1px solid #d8ddd2; animation: arrive 260ms ease-out both; }
+		.watch-index { display: grid; width: 32px; height: 32px; flex: 0 0 32px; place-items: center; border: 1px solid #cbd2c4; border-radius: 50%; color: var(--forest); font-family: var(--serif); font-size: 15px; }
+		.watch-title { flex: 1; overflow-wrap: anywhere; font-size: 14px; font-weight: 600; }
+		.watch-title.is-watched { color: #737d74; text-decoration: line-through; text-decoration-color: var(--tomato); }
+		.watch-action { padding: 8px 4px; border: 0; background: transparent; color: var(--muted); cursor: pointer; font-size: 12px; }
+		.watch-action:hover { color: var(--forest); }
+		.watch-delete { display: grid; width: 32px; height: 32px; flex: 0 0 32px; place-items: center; border: 0; border-radius: 50%; background: transparent; color: #768076; cursor: pointer; font-size: 17px; }
+		.watch-delete:hover { background: #e2e5da; color: var(--tomato); }
+		.empty-state { padding: 17px 0 24px; color: var(--muted); font-family: var(--serif); font-size: 20px; line-height: 1.6; }
+		.add-form { display: flex; gap: 8px; margin-top: 18px; }
+		.add-form input { width: 100%; min-width: 0; padding: 13px 14px; border: 1px solid #cbd2c4; border-radius: 2px; background: rgb(255 255 255 / 60%); color: var(--ink); font-size: 13px; }
+		.add-form input::placeholder { color: #798177; }
+		.add-form button { min-height: 45px; flex: 0 0 auto; padding: 0 18px; border: 0; border-radius: 2px; background: var(--forest); color: white; cursor: pointer; font-size: 12px; font-weight: 600; transition: background 160ms ease; }
+		.add-form button:hover { background: var(--tomato); }
+		.shelf-meta { margin: 11px 0 0; color: var(--muted); font-size: 11px; }
+		.side-note { padding: 28px; background: var(--forest); color: #fffdf4; }
+		.side-note .note-label { margin-bottom: 25px; color: var(--lime); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+		.side-note h3 { max-width: 320px; margin-bottom: 12px; font-family: var(--serif); font-size: 32px; font-weight: 500; line-height: 1.17; }
+		.side-note > p:last-child { margin-bottom: 0; color: rgb(255 253 244 / 78%); font-size: 13px; line-height: 1.8; }
+		.closing { padding-block: 82px 76px; text-align: center; }
+		.closing .eyebrow { justify-content: center; margin-bottom: 20px; color: var(--tomato); }
+		.closing h2 { max-width: 660px; margin: 0 auto 21px; }
+		.closing p:not(.eyebrow) { max-width: 410px; margin: 0 auto; color: var(--muted); font-size: 14px; line-height: 1.8; }
+		footer { border-top: 1px solid var(--line); }
+		.footer-inner { display: flex; min-height: 74px; align-items: center; justify-content: space-between; gap: 16px; color: var(--muted); font-size: 11px; }
+		.footer-inner a { text-decoration-color: #b9c0b5; text-underline-offset: 3px; }
+		.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); border: 0; }
+		@keyframes arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+		@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+		@media (max-width: 720px) {
+			.wrap { width: min(var(--content), calc(100% - 40px)); }
+			.hero { min-height: min(640px, 82svh); background-position: 60% center; }
+			.hero::before { background: linear-gradient(90deg, rgb(15 33 27 / 83%), rgb(15 33 27 / 43%)), linear-gradient(0deg, rgb(15 33 27 / 34%), transparent 70%); }
+			.topbar { min-height: 73px; }
+			.wordmark-name { font-size: 12px; }
+			.nav { gap: 10px; }
+			.nav a { font-size: 11px; }
+			.nav .nav-cta { padding: 9px 8px; }
+			.poster-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 14px; }
+			.poster-filter { padding-inline: 12px; }
+			.movie-wall { padding-block: 58px 66px; }
+			.hero-inner { padding-block: 52px; }
+			h1 { max-width: 550px; font-size: clamp(58px, 12vw, 84px); }
+			.hero-note { right: 20px; bottom: 21px; }
+			.intro { grid-template-columns: 1fr; gap: 30px; padding-block: 58px; }
+			.shelf { padding-block: 58px; }
+			.shelf-heading { align-items: start; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+			.watch-grid { grid-template-columns: 1fr; gap: 28px; }
+			.watch-action { min-height: 44px; padding-inline: 8px; }
+			.watch-delete { width: 44px; height: 44px; flex-basis: 44px; }
+			.add-form input, .add-form button { min-height: 48px; }
+			.side-note { padding: 24px; }
+			.side-note h3 { max-width: 440px; }
+			.closing { padding-block: 69px; }
+		}
+		@media (max-width: 390px) {
+			.wrap { width: calc(100% - 32px); }
+			.hero { min-height: min(560px, 78svh); }
+			.wordmark { gap: 7px; }
+			.mark { width: 28px; height: 28px; }
+			.wordmark-name { font-size: 10px; }
+			.nav { gap: 8px; }
+			.nav a { font-size: 10px; }
+			.nav .nav-cta { padding: 8px 7px; }
+			.nav a:first-child { display: none; }
+			.poster-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; }
+			.poster-caption h3 { font-size: 12px; }
+			.movie-wall { padding-block: 48px 56px; }
+			.movie-wall-heading { align-items: start; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+			.hero-inner { padding-block: 38px; }
+			.hero .eyebrow { margin-bottom: 17px; }
+			.hero h1 { margin-bottom: 16px; font-size: clamp(44px, 13vw, 51px); }
+			.hero-copy { margin-bottom: 22px; font-size: 14px; line-height: 1.65; }
+			.hero-note { display: none; }
+			.intro { gap: 26px; padding-block: 42px; }
+			.intro h2, .movie-wall h2, .closing h2 { font-size: clamp(34px, 10vw, 40px); }
+			.shelf { padding-block: 48px; }
+			.shelf-heading { margin-bottom: 22px; }
+			.watch-grid { gap: 24px; }
+			.side-note { padding: 20px; }
+			.add-form button { padding-inline: 12px; }
+			.closing { padding-block: 55px; }
+			.footer-inner { align-items: start; flex-direction: column; justify-content: center; padding-block: 18px; }
+		}
+	</style>
+</head>
+<body>
+	<header class="hero" id="home">
+		<div class="topbar wrap">
+			<a class="wordmark" href="#home" aria-label="Safa's Screening Room home"><span class="mark" aria-hidden="true">S</span><span class="wordmark-name">SAFA'S SCREENING ROOM</span></a>
+			<nav class="nav" aria-label="Main navigation"><a href="#about">About</a><a href="#watched">Movies</a><a class="nav-cta" href="#watchlist">Watchlist <span aria-hidden="true">↗</span></a></nav>
+		</div>
+		<div class="hero-inner wrap">
+			<p class="eyebrow">Student by day · movie person always</p>
+			<h1>One more film.<br>One more <em>feeling.</em></h1>
+			<p class="hero-copy">Hi, I'm Safa. Somewhere between school and the end credits, I fell for the magic of a really good story.</p>
+			<a class="hero-link" href="#about">A little about me <span class="arrow" aria-hidden="true">↓</span></a>
+		</div>
+		<p class="hero-note">Now showing: Safa's corner of the internet</p>
+	</header>
+	<main>
+		<section class="intro wrap" id="about" aria-labelledby="about-title">
+			<div><p class="section-label">A bit about me</p><h2 id="about-title">Hey, I'm Safa.</h2><p class="intro-copy">High school student, enthusiastic movie-watcher, and the person who will absolutely bring up a film we watched three weeks ago. This is my little place to keep track of what I want to see and the stories I can't stop thinking about.</p></div>
+			<div class="quote">“A movie ends. The good ones stay for the conversation.”</div>
+		</section>
+		<section class="movie-wall" id="watched" aria-labelledby="movie-wall-title">
+			<div class="wrap">
+				<div class="movie-wall-heading">
+					<div><p class="section-label">The movie shelf</p><h2 id="movie-wall-title">Stories I've seen.</h2><p>Some favorites from your list, plus a few popular picks to round out the collection. Pick a poster to read more.</p></div>
+					<p class="poster-source">Poster images via <a href="https://en.wikipedia.org/" target="_blank" rel="noreferrer">Wikipedia</a>.</p>
+				</div>
+				<div class="poster-filters" role="group" aria-label="Filter movie shelf">
+					<button class="poster-filter" type="button" data-filter="all" aria-pressed="true">All <span class="poster-count"></span></button>
+					<button class="poster-filter" type="button" data-filter="movie" aria-pressed="false">Movies <span class="poster-count"></span></button>
+					<button class="poster-filter" type="button" data-filter="series" aria-pressed="false">Series <span class="poster-count"></span></button>
+				</div>
+				<div class="poster-grid" id="poster-grid">
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/The_Godfather" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg" alt="The Godfather theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>The Godfather</h3><p>Film · 1972</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/The_Godfather_Part_II" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/0/03/Godfather_part_ii.jpg" alt="The Godfather Part II theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>The Godfather Part II</h3><p>Film · 1974</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/The_Godfather_Part_III" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/5/55/GodfatherIII2.jpg" alt="The Godfather Part III theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>The Godfather Part III</h3><p>Film · 1990</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/Once_Upon_a_Time_in_America" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/c/c2/Once_Upon_a_Time_in_America.png" alt="Once Upon a Time in America theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>Once Upon a Time in America</h3><p>Film · 1984</p></div></a></article>
+					<article class="poster-card" data-kind="series"><a class="poster-link" href="https://en.wikipedia.org/wiki/Game_of_Thrones" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/d/d8/Game_of_Thrones_title_card.jpg" alt="Game of Thrones title artwork" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>Game of Thrones</h3><p>Series · 2011</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/Rush_Hour_(1998_film)" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/4/49/Rush_Hour_poster.png" alt="Rush Hour theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>Rush Hour</h3><p>Film · 1998</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/Green_Book_(film)" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/5/5b/Green_Book_%282018_poster%29.png" alt="Green Book theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>Green Book</h3><p>Film · 2018</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/Interstellar_(film)" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg" alt="Interstellar theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>Interstellar</h3><p>Film · 2014</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/The_Dark_Knight_(film)" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg" alt="The Dark Knight theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>The Dark Knight</h3><p>Film · 2008</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/Inception" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg" alt="Inception theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>Inception</h3><p>Film · 2010</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/Spirited_Away" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/d/db/Spirited_Away_Japanese_poster.png" alt="Spirited Away theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>Spirited Away</h3><p>Film · 2001</p></div></a></article>
+					<article class="poster-card" data-kind="movie"><a class="poster-link" href="https://en.wikipedia.org/wiki/Jurassic_Park_(film)" target="_blank" rel="noreferrer"><div class="poster-image"><img src="https://upload.wikimedia.org/wikipedia/en/e/e7/Jurassic_Park_poster.jpg" alt="Jurassic Park theatrical poster" loading="lazy" decoding="async"></div><div class="poster-caption"><h3>Jurassic Park</h3><p>Film · 1993</p></div></a></article>
+				</div>
+			</div>
+		</section>
+		<section class="shelf" id="watchlist" aria-labelledby="watchlist-title">
+			<div class="wrap">
+				<div class="shelf-heading"><div><p class="section-label">For the next movie night</p><h2 id="watchlist-title">The watchlist<span aria-hidden="true">.</span></h2></div><p>A little list of films for later. Add one, check it off when you've watched it, and your list will be here next time.</p></div>
+				<div class="watch-grid">
+					<div>
+						<div class="shelf-list" id="watch-list" aria-live="polite" aria-relevant="additions removals text"></div>
+						<form class="add-form" id="watch-form"><label class="sr-only" for="movie-title">Movie title</label><input id="movie-title" name="title" maxlength="100" placeholder="A movie you've been meaning to see..." required><button type="submit">Add to list <span aria-hidden="true">+</span></button></form>
+						<p class="shelf-meta" id="watch-count"></p>
+					</div>
+					<aside class="side-note"><p class="note-label">A note for movie night</p><h3>Good stories make ordinary days feel bigger.</h3><p>So grab a snack, find a comfy spot, and let the opening scene do its thing.</p></aside>
+				</div>
+			</div>
+		</section>
+		<section class="closing wrap"><p class="eyebrow">That's a wrap</p><h2>See you after the credits.</h2><p>Thanks for stopping by my little corner of the internet. There's always room for one more good story.</p></section>
+	</main>
+	<footer><div class="footer-inner wrap"><a href="#home">Safa's Screening Room</a><span>Made between classes &amp; movie nights · <span id="year"></span></span></div></footer>
+	<script>
+		(() => {
+			const storageKey = "safa-screening-room-watchlist";
+			const watchList = document.querySelector("#watch-list");
+			const watchForm = document.querySelector("#watch-form");
+			const titleInput = document.querySelector("#movie-title");
+			const count = document.querySelector("#watch-count");
+			const posterCards = [...document.querySelectorAll(".poster-card")];
+			const posterFilters = [...document.querySelectorAll(".poster-filter")];
+			let storageUnavailable = false;
+
+			posterCards.forEach((card) => {
+				const image = card.querySelector("img");
+				image.addEventListener("error", () => {
+					image.remove();
+					card.querySelector(".poster-image").classList.add("image-missing");
+				}, { once: true });
+			});
+
+			posterFilters.forEach((button) => {
+				button.addEventListener("click", () => {
+					const filter = button.dataset.filter;
+					posterFilters.forEach((filterButton) => {
+						filterButton.setAttribute("aria-pressed", String(filterButton === button));
+					});
+					posterCards.forEach((card) => {
+						card.hidden = filter !== "all" && card.dataset.kind !== filter;
+					});
+				});
+			});
+
+			posterFilters.forEach((button) => {
+				const number = posterCards.filter((card) => button.dataset.filter === "all" || card.dataset.kind === button.dataset.filter).length;
+				button.querySelector(".poster-count").textContent = `(${number})`;
+			});
+
+			function loadMovies() {
+				try {
+					const savedMovies = JSON.parse(localStorage.getItem(storageKey) || "[]");
+					return Array.isArray(savedMovies) ? savedMovies.filter((movie) => typeof movie.title === "string" && typeof movie.watched === "boolean") : [];
+				} catch {
+					storageUnavailable = true;
+					return [];
+				}
+			}
+
+			let movies = loadMovies();
+
+			function saveMovies() {
+				try {
+					localStorage.setItem(storageKey, JSON.stringify(movies));
+					storageUnavailable = false;
+				} catch {
+					storageUnavailable = true;
+				}
+			}
+
+			function renderMovies() {
+				watchList.replaceChildren();
+				if (movies.length === 0) {
+					const emptyState = document.createElement("p");
+					emptyState.className = "empty-state";
+					emptyState.textContent = "No films on the list yet. Got a good one in mind?";
+					watchList.append(emptyState);
+				} else {
+					movies.forEach((movie, index) => {
+						const row = document.createElement("div");
+						row.className = "watch-item";
+						const number = document.createElement("span");
+						number.className = "watch-index";
+						number.textContent = String(index + 1).padStart(2, "0");
+						const title = document.createElement("span");
+						title.className = `watch-title${movie.watched ? " is-watched" : ""}`;
+						title.textContent = movie.title;
+						const toggleButton = document.createElement("button");
+						toggleButton.className = "watch-action";
+						toggleButton.type = "button";
+						toggleButton.textContent = movie.watched ? "Watched" : "Mark watched";
+						toggleButton.setAttribute("aria-label", `${movie.watched ? "Mark unwatched" : "Mark watched"}: ${movie.title}`);
+						toggleButton.addEventListener("click", () => {
+							movies[index].watched = !movies[index].watched;
+							saveMovies();
+							renderMovies();
+						});
+						const removeButton = document.createElement("button");
+						removeButton.className = "watch-delete";
+						removeButton.type = "button";
+						removeButton.textContent = "×";
+						removeButton.setAttribute("aria-label", `Remove ${movie.title} from watchlist`);
+						removeButton.addEventListener("click", () => {
+							movies.splice(index, 1);
+							saveMovies();
+							renderMovies();
+						});
+						row.append(number, title, toggleButton, removeButton);
+						watchList.append(row);
+					});
+				}
+				const remaining = movies.filter((movie) => !movie.watched).length;
+				const status = movies.length === 0 ? "Add a film and it'll be saved on this device for next time." : `${movies.length} ${movies.length === 1 ? "film" : "films"} on your list · ${remaining} still to watch`;
+				count.textContent = storageUnavailable ? `${status} Your browser can't save changes between visits.` : status;
+			}
+
+			watchForm.addEventListener("submit", (event) => {
+				event.preventDefault();
+				const title = titleInput.value.trim();
+				if (!title) return;
+				movies.push({ title, watched: false });
+				saveMovies();
+				renderMovies();
+				watchForm.reset();
+				titleInput.focus();
+			});
+
+			document.querySelector("#year").textContent = String(new Date().getFullYear());
+			renderMovies();
+		})();
+	</script>
+</body>
+</html>
